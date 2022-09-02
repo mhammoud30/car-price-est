@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="vh-100" style="background-image: url('../../../static/images/overlay.png') ,url('../../../static/images/banner.jpg') ; color: #fff;">
+   
+    <div class= 'container py-5 h-100"'>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10"> 
+        <form method="POST" action="">
+         {% csrf_token %}
+            {{ form.as_p}}
+        <button type="sumbit" class="btn btn-success" name="saveCar" value="saveCar"> Save Car</button>
+
+
+
+    </form>
+    
+</div> 
+</div>
+</div>
+</section>
+
+{% endblock content %}

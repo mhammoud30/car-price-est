@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+
+{% block content %}
+<section class="vh-100" style="background-image: url('../../../static/images/overlay.png') ,url('../../../static/images/banner.jpg') ; color: #fff;">
+   
+    <div class= 'container py-5 h-100"'>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+<form method="POST" action="">
+    {% csrf_token %}
+    <p> Are you sure you want to delete "{{obj.type}}"</p>
+    <a class="btn btn-primary" href="{{request.META.HTTP_REFERER}}">Go Back </a>
+    <input class="btn btn-danger" type="Submit" value="Confirm" />
+</form>
+
+
+</div>
+</div>      
+</div>   
+</section>
+
+{% endblock %}

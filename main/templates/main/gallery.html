@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+
+
+
+{% block content %}
+<style>
+  .gallery-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+</style>
+
+{% comment %} <section class="vh-100" style="background-image: url('../../../static/images/overlay.png') ,url('../../../static/images/banner.jpg') ; color: #fff;"> {% endcomment %}
+
+<div class="gallery-container" >
+<div class="container">
+  <h3> Browse Cars</h3>
+  <hr>
+
+  <form method="GET" action="{% url 'gallery' %}">
+    <input type="text" name="q" placeholder="Search Cars...">
+  </form>
+
+
+</div>
+<div class="container">
+    {% if posts_count < 2 %}
+    <h3>{{posts_count}} Car Available </h3>
+    {% else %}
+    <h3>{{posts_count}} Cars Available </h3>
+    {% endif %}
+    
+    {% if request.user.seller == True %}
+    <a class="btn btn-primary" href="{% url 'create-post'%}" role="button">Create Post</a>
+    
+    {% endif %}
+    
+    <div>
+      <div class=" container-fluid" style="padding-top: 10px;" > 
+        <div class="row">
+          {% for post in posts %}
+          {% if forloop.counter0|divisibleby:3 and not forloop.first %}
+          <div class="w-100">
+
+          </div>
+          {% endif %}
+          <div class="col">
+            <div class="card">
+              <img src="{{post.avatar.url}}" class="card-img-top" alt="Car.png">
+                  <div class="card-body">
+                    <h5 class="card-title">{{post.name}}</h5>
+                    <p class="card-text">{{post.description}}</p>
+                    <a href="{% url 'post' post.id %}" class="btn btn-success">$ {{post.carId.price}}</a>
+                  </div>
+            </div>  
+          </div>
+          {% endfor %}
+        </div>
+        
+    </div>
+</div>   
+</div>
+</section> 
+
+{% endblock %}

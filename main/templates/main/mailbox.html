@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<section class="vh-100" style="background-image: url('../../../static/images/overlay.png') ,url('../../../static/images/banner.jpg') ; color: #000;">
+   
+  <div class= 'container py-5 h-100"'>
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+ {% if request.user.buyer == True %}
+    {% for convo in convoB  %}
+    <div class="card">
+      <div class="card-header">
+         Message 
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{convo.name}} -- {{convo.sellerId.name}}</h5>
+        <p class="card-text">{{convo.message}}</p>
+        <a href="{% url 'convo' convo.id %}" class="btn btn-primary">Enter Chat</a>
+      </div>
+    </div>
+    {% endfor %}
+ {% endif %}
+ {% if request.user.seller == True %}
+    {% for convo in convoS  %}
+    <div class="card">
+      <div class="card-header">
+         Message {{i}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{convo.name}} -- {{convo.buyerId.name}}</h5>
+        <p class="card-text">{{convo.message}}</p>
+        <a href="{% url 'convo' convo.id %}" class="btn btn-primary">Enter Chat</a>
+      </div>
+    </div>
+        
+    {% endfor %}
+    
+ {% endif %}
+</div>
+</div>
+</div>
+</section>
+{% endblock content %}
+

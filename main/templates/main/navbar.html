@@ -1,0 +1,33 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #063970;">
+    <div class="container-fluid"> 
+        <a class="navbar-brand" href="{% url 'home'%}">
+            <img src='../../../static/images/thehublogo.png' alt="" width="40" height="30" class="d-inline-block align-text-top">
+            The Hub
+          </a>
+    <ul class="nav">
+        <li class="nav-item">
+            <a  class="nav-link active" href= "{% url 'service' %}"> Estimator</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'gallery' %} "> Gallery</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link"href="{% url 'mailbox'%}">MailBox</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %} "> Logout</a>
+        </li>
+        {% else %} 
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %} "> Login</a>
+        </li>
+        {% endif %} 
+        {% if request.user.is_authenticated %}
+        <a class="nav-link"> Welcome {{request.user.name}}</a>
+        {% endif %}
+        
+    
+    </div>
+</nav>
